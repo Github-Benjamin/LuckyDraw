@@ -20,10 +20,10 @@
 
 示例数据1：
 	{
-	  "playnum": -1, 
-	  "id": "Null", 
-	  "angles": 0, 
-	  "name": "抽奖次数不足"
+	  "playnum": 2, 
+	  "id": 3, 
+	  "angles": 120, 
+	  "name": "恭喜您抽中理财金5200元！"
 	}	
 
 	
