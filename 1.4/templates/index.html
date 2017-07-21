@@ -1,0 +1,65 @@
+$def with(name,luckynnumber)
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>抽奖</title>
+    <style>
+        .playtxt{
+            text-align: center;
+        }
+        .inputtxt{
+            text-align: center;
+        }
+
+        .g-loottery-box{
+            margin: 0 auto;
+            top: 30px;
+            width: 400px;
+		    height: 400px;
+		    position: relative;
+            background: url(../static/img/ly-plate-c.gif) no-repeat;
+        }
+        .g-loottery-box .g-lootery-img{
+            width: 340px;
+		    height: 340px;
+            background: url(../static/img/bg-lottery.png) no-repeat;
+		    position: relative;
+            left: 30px;
+		    top: 30px;
+        }
+        .g-loottery-box .playbtn{
+            width: 186px;
+		    height: 186px;
+            position: absolute;
+            background: url(../static/img/playbtn.png) no-repeat;
+            left: 77px;
+		    top: 77px;
+        }
+    </style>
+
+</head>
+<body>
+
+    $if name:
+        <!--<h3 class="playtxt">亲爱的$name，您剩余抽奖：$luckynnumber次</h3>-->
+        <h3 class="playtxt">亲爱的$name，您剩余抽奖：<span class="playnumber"></span>次</h3>
+    $else:
+        <h3 class="playtxt">请输入用户名开始抽奖！</h3>
+    <form action="/" method="post" class="inputtxt">
+        <input type="text" name="username"  id="username" required="required" maxlength="8" placeholder="用户名"></input>
+        <input type="submit" value="提交" class="submit" required="required"></input>
+    </form>
+
+    <div class="g-loottery-box">
+        <div class="g-lootery-img">
+            <a class="playbtn" href="javascript:;" title="开始抽奖"></a>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="../static/js/jquery-1.8.3.min.js"> </script>
+    <script type="text/javascript" src="../static/js/jquery.rotate.min.js"> </script>
+    <script type="text/javascript" src="../static/js/luckydo.js"> </script>
+
+</body>
+</html>
