@@ -51,7 +51,7 @@ def checkusername(user):
             else:
                 return b
         else:
-            return jsondata('Null', 'Null', 0, '用户不存在', 0)
+            return jsondata('Null', 'Null', 0, '用户名不存在，请重新输入用户名！', 0)
 
 def checkuser(user):
     if user==None or user == 'None':
@@ -130,7 +130,6 @@ def luckylog():
 
 def luckrandom(user, playnum):
     id = random.randint(1, 6)
-    print id
     if playnum > 0:
         if id == 1:
             savelog(user,id,playnum)

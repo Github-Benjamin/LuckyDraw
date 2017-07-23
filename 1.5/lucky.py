@@ -17,6 +17,8 @@ renter = web.template.render('templates')
 class Index(object):
     def GET(self):
         web.header("Content-Type", "text/html; charset=utf-8")
+        ip = web.ctx.ip
+        print ip
         data = web.input()
         user = data.get('user')
         if user:
