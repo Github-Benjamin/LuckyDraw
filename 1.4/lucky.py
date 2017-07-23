@@ -3,12 +3,13 @@
 #  * Created by Benjamin on 2017/7/17
 #  */
 import web
-from shakalaka import checkuser,reviseuser,luckrandom
+from luckydata import checkuser,reviseuser,luckrandom,luckylog
 
 urls = (
     '/','Index',
     '/lucky','Lucky',
     '/luckynumber','Luckynumber',
+    '/luckylog','Luckylog',
 )
 
 renter = web.template.render('templates')
@@ -37,9 +38,9 @@ class Lucky(object):
         data = web.input()
         user = data.get('user')
         user = str(user)
+        if user=='None': return
         if user:
             playnum =  checkuser(user)
-            print playnum
             reviseuser(user)
             return luckrandom(user,playnum)
         else:
@@ -51,7 +52,14 @@ class Luckynumber(object):
         data = web.input()
         user = data.get('user')
         user = str(user)
+        if user == 'None': return
         return checkuser(user)
+
+class Luckylog(object):
+    def GET(self):
+        web.header('Content-Type', 'text/json; charset=utf-8', unique=True)
+        data = luckylog()
+        return data
 
 if __name__ == '__main__':
     web.application(urls,globals()).run()

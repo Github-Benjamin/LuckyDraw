@@ -1,17 +1,7 @@
-/**
+﻿/**
  * Created by Anonymous on 2017/7/17.
  */
 var istrue = false;
-
-var getdata = function () {
-    // 刷新页面每次获取用户最新抽奖次数
-    $.getJSON("/luckynumber",{user:getuser},function (data,textStatus,jqXHR) {
-        $('.playnumber').html(data);
-    });
-}
-
-getdata();
-
 
 var getuser =  (function(){
     //返回当前 URL 的查询部分（问号 ? 之后的部分）。
@@ -39,20 +29,35 @@ var getuser =  (function(){
     return user;
 })();
 
+var getdata = function () {
+    // 刷新页面每次获取用户最新抽奖次数
+    if (getuser){
+    $.getJSON("/luckynumber",{user:getuser},function (data,textStatus,jqXHR) {
+        $('.playnumber').html(data);
+    });}
+}
+
+getdata();
+
 //点击旋转按钮开始抽奖，并请求数据
 var $btn = $('.playbtn');
 $btn.click(function () {
     if (istrue) return;
     istrue = true;
-    $.getJSON("/lucky",{user:getuser},function (data,textStatus,jqXHR) {
-        if (data.playnum==0){
-            istrue = false;
-            alert(data.idname);
-        }else {
-            getdata();
-            rotateFunc(data.angles,data.idname,data.playnum);
-        }
-    });
+    if (getuser) {
+        $.getJSON("/lucky", {user: getuser}, function (data, textStatus, jqXHR) {
+            if (data.playnum == 0) {
+                istrue = false;
+                alert(data.idname);
+            } else {
+                getdata();
+                rotateFunc(data.angles, data.idname, data.playnum);
+            }
+        });
+    }else {
+        istrue = false;
+        alert("请输入用户名开始抽奖！");
+    }
 });
 
 //抽奖轮盘动画效果
