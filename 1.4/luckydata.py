@@ -1,4 +1,7 @@
 # coding:utf-8
+# /**
+#  * Created by Benjamin on 2017/7/23
+#  */
 import json
 import time
 import random
@@ -7,7 +10,6 @@ reload(sys)
 sys.setdefaultencoding('utf8')
 
 config = {'1':'恭喜您抽中理财金2000元！','2':'很遗憾未中奖，谢谢参与！','3':'恭喜您抽中理财金5200元！','4':'恭喜您抽中100元京东卡一张！','5':'很遗憾未中奖，谢谢参与！','6':'恭喜您抽中理财金1000元！'}
-
 
 def save(data):
     s = json.dumps(data,indent=2,ensure_ascii=False)
@@ -37,8 +39,22 @@ def lookupuser(data,user):
         if i.has_key(user):
             return i[user]
 
+def checkusername(user):
+    if user==None or user == 'None':
+        return jsondata('Null', 'Null', 0, '用户名为空', 0)
+    else:
+        a = load()
+        b = lookupuser(a, user)
+        if b!=None:
+            if b == 0:
+                return 0
+            else:
+                return b
+        else:
+            return jsondata('Null', 'Null', 0, '用户不存在', 0)
+
 def checkuser(user):
-    if user==None:
+    if user==None or user == 'None':
         return jsondata('Null', 'Null', 0, '用户名为空', 0)
     else:
         a = load()

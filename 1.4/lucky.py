@@ -3,7 +3,7 @@
 #  * Created by Benjamin on 2017/7/17
 #  */
 import web
-from luckydata import checkuser,reviseuser,luckrandom,luckylog
+from luckydata import checkuser,reviseuser,luckrandom,luckylog,checkusername
 
 urls = (
     '/','Index',
@@ -20,7 +20,7 @@ class Index(object):
         data = web.input()
         user = data.get('user')
         if user:
-            luckynnumber = checkuser(user)
+            luckynnumber = checkusername(user)
         else:
             pass
             luckynnumber = None
@@ -38,13 +38,17 @@ class Lucky(object):
         data = web.input()
         user = data.get('user')
         user = str(user)
-        if user=='None': return
+        if user == "None": raise web.seeother('/')
         if user:
-            playnum =  checkuser(user)
-            reviseuser(user)
-            return luckrandom(user,playnum)
+            playnum =  str(checkusername(user))
+            if playnum.isdigit():
+                playnum = int(playnum)
+                reviseuser(user)
+                return luckrandom(user,playnum)
+            else:
+                return playnum
         else:
-            return  None
+            return  checkusername(user)
 
 class Luckynumber(object):
     def GET(self):
@@ -52,8 +56,9 @@ class Luckynumber(object):
         data = web.input()
         user = data.get('user')
         user = str(user)
-        if user == 'None': return
-        return checkuser(user)
+        #if user == 'None': return '\n\n  User is None!\n\n  Please input the UserName!'
+        if user == "None": raise web.seeother('/')
+        return checkusername(user)
 
 class Luckylog(object):
     def GET(self):
