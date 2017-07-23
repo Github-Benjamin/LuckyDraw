@@ -1,0 +1,62 @@
+[
+  {
+    "playnum": 2, 
+    "idnum": 3, 
+    "user": "Ben001", 
+    "time": "2017-07-23 20:01:38"
+  }, 
+  {
+    "playnum": 1, 
+    "idnum": 3, 
+    "user": "Ben001", 
+    "time": "2017-07-23 20:02:03"
+  }, 
+  {
+    "playnum": 3, 
+    "idnum": 1, 
+    "user": "Ben002", 
+    "time": "2017-07-23 20:02:25"
+  }, 
+  {
+    "playnum": 1, 
+    "idnum": 4, 
+    "user": "Ben002", 
+    "time": "2017-07-23 20:02:37"
+  }, 
+  {
+    "playnum": 2, 
+    "idnum": 6, 
+    "user": "Ben003", 
+    "time": "2017-07-23 20:02:51"
+  }, 
+  {
+    "playnum": 1, 
+    "idnum": 4, 
+    "user": "Ben003", 
+    "time": "2017-07-23 20:02:59"
+  }, 
+  {
+    "playnum": 3, 
+    "idnum": 6, 
+    "user": "Benjamin", 
+    "time": "2017-07-23 20:03:23"
+  }, 
+  {
+    "playnum": 2, 
+    "idnum": 1, 
+    "user": "Benjamin", 
+    "time": "2017-07-23 20:03:28"
+  }, 
+  {
+    "playnum": 1, 
+    "idnum": 6, 
+    "user": "Benjamin", 
+    "time": "2017-07-23 20:03:33"
+  }, 
+  {
+    "playnum": 1, 
+    "idnum": 6, 
+    "user": "1213", 
+    "time": "2017-07-23 20:04:36"
+  }
+]
