@@ -48,9 +48,9 @@ Python项目部署运行篇：
               
        4.Gunicorn配置段：
        
-            1.>>gunicorn -w 8 -b 127.0.0.1:5000 lucky:app
+           1.>>gunicorn -w 8 -b 127.0.0.1:5000 lucky:app
             
-            2.参数说明：-w为启动进程数；-b为端口端口和访问方式，0.0.0.0为公开访问，而127.0.0.1为本地访问；lucky:app,lucky为运行的py文件,app为调用方法名；
+           2.参数说明：-w为启动进程数；-b为端口端口和访问方式，0.0.0.0为公开访问，而127.0.0.1为本地访问；lucky:app,lucky为运行的py文件,app为调用方法名；
             
             
        5.Supervisor配置段：
