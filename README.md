@@ -19,18 +19,18 @@ Python项目部署运行篇：
 
 本地调试模式：
 
-        1.命令>>Python lucky.py，如果运行正常的话本地默认开启服务端口8080，打开浏览器访问127.0.0.1:8080即可；
+        1.命令>>Python lucky.py，如果运行正常的话本地默认开启服务端口8080，打开浏览器访问127.0.0.1:8080即可
         
-        2.命令>>Python lucky.py 80,选择开启80端口，如果没有端口冲突的问题开启正常，打开浏览器访问127.0.0.1即可；
+        2.命令>>Python lucky.py 80,选择开启80端口，如果没有端口冲突的问题开启正常，打开浏览器访问127.0.0.1即可
         
         
         
 产品环境部署：
 
 
-        1.推荐配置：Nginx作为HTTP代理服务器处理静态文件，Gunicorn作为应用处理服务器，Supervisor管理应用进程；
+        1.推荐配置：Nginx作为HTTP代理服务器处理静态文件，Gunicorn作为应用处理服务器，Supervisor管理应用进程
         
-        2.配置安装篇，建议自行BaiDu、Google解决；
+        2.配置安装篇，建议自行BaiDu、Google解决
         
         3.Nginx.conf配置段：
         
@@ -53,14 +53,14 @@ Python项目部署运行篇：
         
         
               
-       4.Gunicorn配置段：
+       4.Gunicorn命令解析：
        
            1.>>gunicorn -w 8 -b 127.0.0.1:5000 lucky:app
             
-           2.参数说明：-w为启动进程数；-b为端口端口和访问方式，0.0.0.0为公开访问，而127.0.0.1为本地访问；lucky:app,lucky为运行的py文件,app为调用方法名；
+           2.参数说明：-w为启动进程数；-b为端口端口和访问方式，0.0.0.0为公开访问，而127.0.0.1为本地访问；lucky:app,lucky为运行的py文件,app为调用方法名
             
             
-       5.Supervisor配置段：
+       5.Supervisor.conf配置段：
           
        
           [program:myapp]
@@ -70,8 +70,7 @@ Python项目部署运行篇：
             port = 0.0.0.0:9001
             
           1.运行>>supervisord -c supervisord.conf
-          
-          
-            
+          2.inet_http_server为应用web管理页面的地址，查看并管理当前正在运行的gunicorn程序
+          3.设置开机执行脚本命令，测试通过，一套部署Python运行的服务器就搭建好了
 
     
