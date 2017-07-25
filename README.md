@@ -27,6 +27,7 @@ Python项目部署运行篇：
         
         3.Nginx.conf配置段：
         
+        
               server {
                   listen       80;
                   server_name  localhost;
@@ -37,8 +38,13 @@ Python项目部署运行篇：
                       proxy_set_header X-Real-IP $remote_addr;
                       proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
                 }
-              }
-              
+                location /static {
+                   root /var/www/lucky;
+                }
+             }
+             
+        
+        
               
        4.Gunicorn配置段：
        
