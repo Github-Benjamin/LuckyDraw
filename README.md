@@ -70,7 +70,10 @@ Python项目部署运行篇：
             port = 0.0.0.0:9001
             
           1.运行>>supervisord -c supervisord.conf
+          
           2.inet_http_server为应用web管理页面的地址，查看并管理当前正在运行的gunicorn程序
+          
           3.设置开机执行脚本命令，测试通过，一套部署Python运行的服务器就搭建好了
+          
 
     
