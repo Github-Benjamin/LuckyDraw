@@ -51,7 +51,7 @@ def checkusername(user):
             else:
                 return b
         else:
-            return jsondata('Null', 'Null', 0, '用户名不存在，请重新输入用户名！', 0)
+            return jsondata('Null', 'Null', 0, '用户不存在,请输入用户名开始抽奖！', 0)
 
 def checkuser(user):
     if user==None or user == 'None':
@@ -127,6 +127,18 @@ def luckylog():
     data = json.dumps(datalist, indent=2, ensure_ascii=False)
     return data
 
+def mylucky(user):
+    data = logload()
+    mylucky = []
+    for i in data:
+        if i['user'] == user:
+            a = i['idnum']
+            data = {'idname': config[str(a)], 'time': i['time']}
+            mylucky.append(data)
+    if mylucky:
+        return json.dumps(mylucky,indent=2, ensure_ascii=False)
+    else:
+        return json.dumps({"idname":"暂无中奖记录!"},indent=2, ensure_ascii=False)
 
 def luckrandom(user, playnum):
     id = random.randint(1, 6)

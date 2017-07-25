@@ -2,14 +2,15 @@
 # /**
 #  * Created by Benjamin on 2017/7/17
 #  */
-import web
-from luckydata import checkuser,reviseuser,luckrandom,luckylog,checkusername
+import web,json
+from luckydata import checkuser,reviseuser,luckrandom,luckylog,checkusername,mylucky
 
 urls = (
     '/','Index',
     '/lucky','Lucky',
     '/luckynumber','Luckynumber',
     '/luckylog','Luckylog',
+    '/mylucky','Mylucky',
 )
 
 renter = web.template.render('templates')
@@ -18,15 +19,20 @@ class Index(object):
     def GET(self):
         web.header("Content-Type", "text/html; charset=utf-8")
         ip = web.ctx.ip
-        print ip
         data = web.input()
         user = data.get('user')
         if user:
             luckynnumber = checkusername(user)
+            if len(str(luckynnumber))>2:
+                a = json.loads(luckynnumber)
+                if a['id'] == 'Null':
+                    user = None
+                    return renter.index(user, luckynnumber)
+            return renter.index(user, luckynnumber)
         else:
-            pass
+            user = None
             luckynnumber = None
-        return renter.index(user,luckynnumber)
+            return renter.index(user,luckynnumber)
     def POST(self):
         web.header("Content-Type", "text/html; charset=utf-8")
         data = web.input()
@@ -68,5 +74,17 @@ class Luckylog(object):
         data = luckylog()
         return data
 
+class Mylucky(object):
+    def GET(self):
+        web.header('Content-Type', 'text/json; charset=utf-8', unique=True)
+        data = web.input()
+        user = data.get('user')
+        user = str(user)
+        if user == "None": raise web.seeother('/')
+        return mylucky(user)
+
 if __name__ == '__main__':
     web.application(urls,globals()).run()
+
+#app = web.application(urls, globals())
+#app = app.wsgifunc()
