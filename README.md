@@ -10,7 +10,12 @@
 
 
 
+
+
+
+
 Python项目部署运行篇：
+
 
 本地调试模式：
 
@@ -57,3 +62,16 @@ Python项目部署运行篇：
             
        5.Supervisor配置段：
           
+       
+          [program:myapp]
+            directory = /var/www/lucky
+            command = gunicorn -w 8 -b 127.0.0.1:5000 lucky:app
+          [inet_http_server]
+            port = 0.0.0.0:9001
+            
+          1.运行>>supervisord -c supervisord.conf
+          
+          
+            
+
+    
