@@ -1,0 +1,59 @@
+/*This is Style*/
+.playtxt{
+    text-align: center;
+}
+.mylucky-box{
+    text-align: center;
+}
+.inputtxt{
+    text-align: center;
+}
+.g-loottery-box{
+    margin: 0 auto;
+    top: 30px;
+    width: 400px;
+    height: 400px;
+    position: relative;
+    background: url(../img/ly-plate-c.gif) no-repeat;
+}
+.g-loottery-box .g-lootery-img{
+    width: 340px;
+    height: 340px;
+    background: url(../img/bg-lottery.png) no-repeat;
+    position: relative;
+    left: 30px;
+    top: 30px;
+}
+.g-loottery-box .playbtn{
+    width: 186px;
+    height: 186px;
+    position: absolute;
+    background: url(../img/playbtn.png) no-repeat;
+    left: 77px;
+    top: 77px;
+}
+.config{
+    width:400px;
+    height:16px;
+    margin:50px auto auto auto;
+    text-align: center;
+}
+#container{
+    width:400px;
+    height:16px;
+    background: url(../img/noticeIco.gif) no-repeat;
+    padding-left:10px;
+    padding-right:10px;
+    line-height: 24px;
+    overflow:hidden;
+    padding-bottom: 6px;
+    margin-bottom: 10px;
+}
+.footer{
+    height: 60px;
+    line-height: 80px;
+    margin-top: 29px;
+    width: 100%;
+    bottom: 0;
+    text-align: center;
+}

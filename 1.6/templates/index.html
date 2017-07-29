@@ -1,0 +1,56 @@
+﻿$def with(name,luckynnumber)
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="../static/css/style.css" rel="stylesheet" type="text/css" />
+    <title>抽奖</title>
+</head>
+<body>
+
+    $if name:
+        <!--<h3 class="playtxt">亲爱的$name，您剩余抽奖：$luckynnumber次</h3>-->
+        <h3 class="playtxt">亲爱的$name，您剩余抽奖：<span class="playnumber"></span>次</h3>\
+        <div class="mylucky-box">
+            <a class="mylucky" href="javascript:;" style="text-decoration:none">我的中奖记录</a> <a href="/" style="text-decoration:none">退出</a>
+            <div id="mylucky">
+            </div>
+        </div>
+    $else:
+        <h3 class="playtxt">请输入用户名开始抽奖！</h3>
+        <form action="/" method="post" class="inputtxt">
+            <input type="text" name="username"  id="username" required="required" maxlength="8" placeholder="请输入用户名：">
+            <input type="submit" value="提交" class="submit" required="required">
+        </form>
+
+    <div class="g-loottery-box">
+        <div class="g-lootery-img">
+            <a class="playbtn" href="javascript:;" title="开始抽奖"></a>
+        </div>
+    </div>
+
+    <div class="config">
+        <div id="container">
+            <div></div>
+        </div>
+
+    <div class="footer">
+        &#169; 2017 Benjamin 版权所有
+    </div>
+
+    <script type="text/javascript" src="../static/js/jquery-1.8.3.min.js"> </script>
+    <script type="text/javascript" src="../static/js/jquery.rotate.min.js"> </script>
+    <script type="text/javascript" src="../static/js/luckydo.js"> </script>
+
+    <script>
+      var _hmt = _hmt || [];
+      (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?4cfd2c93505008fb68870bd5a6d87b7f";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script>
+
+</body>
+</html>
