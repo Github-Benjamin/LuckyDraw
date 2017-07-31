@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用户管理后台</title>
+
+    <style>
+        .usr_box{
+            text-align: center;
+        }
+        .formdata{
+            position:absolute;
+            background: #aeb1ff;
+            left:50%;
+            width:240px;
+            z-index:99;
+            top:140px;
+            text-align: center;
+            display:none;
+        }
+        .formdata b i{
+            cursor:pointer;
+            width:14px;
+            height:14px;
+            position:absolute;
+            right:8px;
+            top:4px;
+            background:url(../static/img/close.png) no-repeat center center;
+        }
+    </style>
+
+</head>
+<body>
+
+    <div class="usr_box">
+        <h1>用户管理后台</h1>
+        <div class="userlist">
+        </div>
+    </div>
+
+    <div class="formdata">
+    	<form class="Newdata" method="post" action="/edituser">
+                <b>修改数据<i></i></b>
+                <br>
+                <br>
+                用户名：&#8195;<input type="text" name="user"  id="user" required="required" maxlength="8" size="15"  placeholder="请输入用户名：">
+                <br>
+                抽奖次数：<input type="text" id="times" name="times" required="required" maxlength="8" size="15" placeholder="请输入抽奖次数：">
+                <br>
+                <br>
+                <input type="submit" value="提交" class="submit" required="required">
+        </form>
+    </div>
+
+    <script type="text/javascript" src="../static/js/jquery-1.8.3.min.js"> </script>
+    <script type="text/javascript" src="../static/js/jquery.rotate.min.js"> </script>
+    <script type="text/javascript" src="../static/js/admin.js"> </script>
+
+    <script>
+      var _hmt = _hmt || [];
+      (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?4cfd2c93505008fb68870bd5a6d87b7f";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script>
+
+</body>
+</html>

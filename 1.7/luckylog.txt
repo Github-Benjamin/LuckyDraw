@@ -1,0 +1,44 @@
+[
+  {
+    "playnum": 2, 
+    "idnum": 1, 
+    "user": "Benjamin", 
+    "time": "2017-07-29 22:14:13"
+  }, 
+  {
+    "playnum": 1, 
+    "idnum": 1, 
+    "user": "Benjamin", 
+    "time": "2017-07-29 22:14:20"
+  }, 
+  {
+    "playnum": 2, 
+    "idnum": 6, 
+    "user": "BenT001", 
+    "time": "2017-07-29 22:15:00"
+  }, 
+  {
+    "playnum": 1, 
+    "idnum": 6, 
+    "user": "BenT001", 
+    "time": "2017-07-29 22:15:05"
+  }, 
+  {
+    "playnum": 1, 
+    "idnum": 6, 
+    "user": "BenT002", 
+    "time": "2017-07-29 22:15:30"
+  }, 
+  {
+    "playnum": 2, 
+    "idnum": 1, 
+    "user": "BenT003", 
+    "time": "2017-07-29 22:15:57"
+  }, 
+  {
+    "playnum": 3, 
+    "idnum": 6, 
+    "user": "BenT004", 
+    "time": "2017-07-29 22:16:15"
+  }
+]
