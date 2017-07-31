@@ -92,7 +92,7 @@ var rotateFunc = function (angles,text,playnum) {
 $.getJSON("/luckylog",function (data,textStatus,jqXHR) {
     $.each(data, function (n, value) {
                var trs = "";
-               trs += "<div>" + "恭喜用户：" + value.user+ "，" + value.idname.substring(3,) + "</div>";
+               trs += "<div>" + "恭喜用户：" + value.user+ "，" + value.idname.substring(3) + "</div>";
                var tbody = "";
                tbody += trs;
                $("#container").append(tbody);
