@@ -128,5 +128,7 @@ if __name__ == "__main__":
     app.internalerror = internalerror
     app.run()
 
-#app = web.application(urls, globals())
-#app = app.wsgifunc()
+# app = web.application(urls, globals())
+# app.notfound = notfound
+# app.internalerror = internalerror
+# app = app.wsgifunc()

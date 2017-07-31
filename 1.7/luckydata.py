@@ -73,7 +73,7 @@ def reviseuser(user):
         if i.has_key(user):
             times = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(time.time()))
             if checkuser(user)>0:
-                playnum = checkuser(user) - 1
+                playnum = int(checkuser(user)) - 1
                 i[user] = playnum
                 i['time'] = times
                 save(userlist)
