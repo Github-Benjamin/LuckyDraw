@@ -28,7 +28,7 @@ class Index(object):
         user = data.get('user')
         if user:
             luckynnumber = checkusername(user)
-            if len(str(luckynnumber))>2:
+            if len(str(luckynnumber))>4:
                 a = json.loads(luckynnumber)
                 if a['id'] == 'Null':
                     user = None
