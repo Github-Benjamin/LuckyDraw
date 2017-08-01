@@ -19,7 +19,7 @@
     $else:
         <h3 class="playtxt">请输入用户名开始抽奖！</h3>
         <form action="/" method="post" class="inputtxt">
-            <input type="text" name="username"  id="username" required="required" maxlength="8" placeholder="请输入用户名：">
+            <input type="text" name="username"  id="username" onkeyup="value=value.replace(/[^\w\.\/]/ig,'')" required="required" maxlength="8" placeholder="请输入用户名：">
             <input type="submit" value="提交" class="submit" required="required">
         </form>
 
