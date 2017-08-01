@@ -40,5 +40,71 @@
     "idnum": 6, 
     "user": "BenT004", 
     "time": "2017-07-29 22:16:15"
+  }, 
+  {
+    "playnum": 3, 
+    "idnum": 1, 
+    "user": "admin", 
+    "time": "2017-08-01 21:00:46"
+  }, 
+  {
+    "playnum": 10, 
+    "idnum": 6, 
+    "user": "QQ", 
+    "time": "2017-08-01 21:01:44"
+  }, 
+  {
+    "playnum": 9, 
+    "idnum": 3, 
+    "user": "QQ", 
+    "time": "2017-08-01 21:01:49"
+  }, 
+  {
+    "playnum": 8, 
+    "idnum": 6, 
+    "user": "QQ", 
+    "time": "2017-08-01 21:01:53"
+  }, 
+  {
+    "playnum": 6, 
+    "idnum": 6, 
+    "user": "QQ", 
+    "time": "2017-08-01 21:02:04"
+  }, 
+  {
+    "playnum": 5, 
+    "idnum": 4, 
+    "user": "QQ", 
+    "time": "2017-08-01 21:02:10"
+  }, 
+  {
+    "playnum": 4, 
+    "idnum": 6, 
+    "user": "QQ", 
+    "time": "2017-08-01 21:02:15"
+  }, 
+  {
+    "playnum": 3, 
+    "idnum": 6, 
+    "user": "QQ", 
+    "time": "2017-08-01 21:02:22"
+  }, 
+  {
+    "playnum": 2, 
+    "idnum": 1, 
+    "user": "QQ", 
+    "time": "2017-08-01 21:02:26"
+  }, 
+  {
+    "playnum": 1, 
+    "idnum": 1, 
+    "user": "QQ", 
+    "time": "2017-08-01 21:02:31"
+  }, 
+  {
+    "playnum": 3, 
+    "idnum": 3, 
+    "user": "123", 
+    "time": "2017-08-01 21:04:40"
   }
 ]

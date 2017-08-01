@@ -15,7 +15,8 @@ $.getJSON("/alluserdata",function (data,textStatus,jqXHR) {
                     // alert(value[key]);
                     if (istrue){
                         var num = n+1
-                        trs += "<div class='log'>"+ num +'&#8195;'+value.time+'&#8195;'+key+'&#8195;'+value[key]+'&#8195;'+"<a style='color: green;text-decoration:none;' href='javascript:;' class='edit'>编辑</a> | <a style='color: #ff0000;text-decoration:none;' href="+"'/deluser?user="+key+"'>删除</a>"+"</div>"
+                        trs += "<div class='log'>"+ num +'&#8195;'+value.time+'&#8195;'+key+'&#8195;'+value[key]+'&#8195;'+"<a style='color:green;text-decoration:none;' href='javascript:;' class='edit' onclick='GetHref(this);' id='"+key+"'>编辑</a> | <a style='color: #ff0000;text-decoration:none;' href="+"'/deluser?user="+key+"'>删除</a>"+"</div>"
+                        $('#user').attr('value',key);
                         istrue = false;
                     }
                 }
@@ -24,11 +25,14 @@ $.getJSON("/alluserdata",function (data,textStatus,jqXHR) {
                $(".userlist").append(tbody);
                istrue = true
     });
-    $('.edit').click(function () {
-        $('.formdata').fadeIn();
-    });
-    $('.formdata  b i').click(function () {
-        $(".formdata").fadeOut();
-    });
 });
 
+function GetHref(obj){
+    var value=(obj.id);
+    $('.formdata').fadeIn();
+    $('#user').attr('value',value)
+}
+
+$('.formdata  b i').click(function () {
+    $(".formdata").fadeOut();
+});
