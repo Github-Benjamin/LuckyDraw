@@ -1,0 +1,114 @@
+/**
+* Created by Benjamin on 2017/7/23
+* Updata on 2017/8/2
+* Email：Benjamin_v@qq.com
+* QQ：350105629
+**/
+
+1.host:/(?user=${user})
+该接口为Index首页，GET请求获取用户名和剩余抽奖参数，POST请求用于存储用户名数据并存入库里面；
+参数说明:此处有明显bug待优化，暂不支持中文用户名，POST提交数据后303重定向到首页并带参数；
+
+GET示例数据表示方法：
+$def with(name,playnum)
+if name:
+	 <h1>$name,$playnum</h1>
+else:
+	<h1>None</h1>
+
+POST请求参数说明：
+ username:${user}
+
+
+ 
+2.host:/luckynumber(?user=${user})
+该接口用户查询用户剩余抽奖，返回JSON数据，新增接口数据验证增强健壮性；
+参数说明：(?user=${user})，${user}为用户名，暂不支持中文用户名；
+示例数据1：
+${number}
+
+示例数据2：
+{
+playnum: 0,
+idname: "用户不存在",
+user: "Null",
+angles: 0,
+id: "Null"
+}
+
+示例数据3：
+判断是否有user参数，如果参数存在就返回剩余次数；
+判断是否有user参数，如果参数不存在则303跳转到首页；
+
+
+	
+3.host:/lucky(?user=${user})
+该接口为用户抽奖接口，调用接口进行随机抽奖并返回相应数据，增加健壮性；
+参数说明：(?user=${user})，${user}为用户名，暂不支持中文用户名；
+示例数据1：
+{
+  "playnum": -1, 
+  "id": "Null", 
+  "angles": 0, 
+  "name": "抽奖次数不足"
+}	
+
+示例数据{xx}：
+同上判断：1.用户名不存在了；2.User参数是否存在；
+
+
+
+4.host:/luckylog
+该接口为用户中奖最新10条数据，返回JSON数据用于做轮播消息，仅查询功能存入其他参数无用；
+参数说明：暂不支持参数验证，目前仅供查询。
+示例数据1：
+[{
+idname: "恭喜您抽中理财金1000元！",
+user: "7",
+time: "2017-07-23 14:44:41"
+},...]
+
+
+
+5.host:/mylucky(?user=${user})
+该接口为查询单个用户中奖记录，显示用户所有中奖记录；
+参数说明：(?user=${user})，${user}为用户名，暂不支持中文用户名；
+示例数据1：
+[{
+idname: "恭喜您抽中理财金1000元！",
+time: "2017-07-23 20:02:51"
+},
+{
+idname: "恭喜您抽中100元京东卡一张！",
+time: "2017-07-23 20:02:59"
+}]
+
+示例数据2：
+{
+idname: "暂无中奖记录!",
+time: ""
+}
+
+
+6.host:/alluserdata
+该接口为查询所有用户记录数，返回当前所有用户数据。
+示例数据：
+[{
+123: 2,
+time: "2017-08-01 19:52:22"
+},
+.....]
+
+
+
+7.host:/edituser(?user=${user}&times=${times})
+该接口为修改用户抽奖次数接口
+303跳转，函数返回值：edit succes或edit faild
+
+
+
+8.host:/deluser(?user=${user})
+该接口为删除用户数据接口
+303跳转，函数返回值：del succes或del faild
+
+
