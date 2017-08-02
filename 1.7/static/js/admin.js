@@ -4,13 +4,11 @@
 
 var istrue = true
 
-
-
 //用户纪录列表展示
-$(".userlist").append("序号&#8195;&#8195;最后更新时间&#8195;&#8195;用户名&#8195;次数&#8195;&#8195;用户操作&#8195;&#8195;");
+// $(".userlist").append("序号&#8195;&#8195;最后更新时间&#8195;&#8195;用户名&#8195;次数&#8195;&#8195;用户操作&#8195;&#8195;");
 var userlist = function () {
     $.getJSON("/alluserdata",function (data,textStatus,jqXHR) {
-    $("div").remove('.log');
+    $("tr").remove('.log');
     $.each(data, function (n, value) {
                 var trs = "";
                 for (var key in value)
@@ -19,13 +17,13 @@ var userlist = function () {
                     // alert(value[key]);
                     if (istrue){
                         var num = n+1
-                        trs += "<div class='log'>"+ num +'&#8195;'+value.time+'&#8195;'+key+'&#8195;'+value[key]+'&#8195;'+"<a style='color:#2b542c;text-decoration:none;' href='javascript:;' onclick='GetCheck(this);' id='"+key+"'>查看</a> |<a style='color:green;text-decoration:none;' href='javascript:;' class='edit' onclick='Getid(this);' id='"+key+"'>编辑</a> | <a style='color: #ff0000;text-decoration:none;' href="+"'/deluser?user="+key+"'>删除</a>"+"</div>"
+                        trs += "<tr class='log'><td>"+ num +'</td><td>'+value.time+'</td><td>'+key+'</td><td>'+value[key]+'</td><td>'+"<a style='color:#2b542c;text-decoration:none;' href='javascript:;' onclick='GetCheck(this);' id='"+key+"'>查看</a></td><td><a style='color:green;text-decoration:none;' href='javascript:;' class='edit' onclick='Getid(this);' id='"+key+"'>编辑</a></td><td><a style='color: #ff0000;text-decoration:none;' href="+"'/deluser?user="+key+"'>删除</a></td>"
                         istrue = false;
                     }
                 }
                var tbody = "";
                tbody += trs;
-               $(".userlist").append(tbody);
+               $(".user_list").append(tbody);
                istrue = true
         });
     });

@@ -8,6 +8,9 @@
         .usr_box{
             text-align: center;
         }
+        .user_list{
+            margin: auto;
+        }
         .formdata{
             position:absolute;
             background: #aeb1ff;
@@ -27,7 +30,6 @@
             top:4px;
             background:url(../static/img/close.png) no-repeat center center;
         }
-
         .userdata{
             position:absolute;
             background: #aeb1ff;
@@ -47,7 +49,6 @@
             top:4px;
             background:url(../static/img/close.png) no-repeat center center;
         }
-
     </style>
 
 </head>
@@ -56,6 +57,9 @@
     <div class="usr_box">
         <h1>用户管理后台</h1>
         <div class="userlist">
+            <table border=1 class="user_list">
+                <tr><td>序号</td><td>最后更新时间</td><td>用户名</td><td>剩余抽奖次数</td><td colspan="3">操作</td>
+            </table>
         </div>
     </div>
 
