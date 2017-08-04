@@ -21,7 +21,7 @@
 
 # 计划2017年8月第一周的周末：1.接入短信验证码平台（阿里大于）；2.实现Session验证，取消通过url传参入参的形式。
 # 没有谁能阻止你成功，除了你自己 ---80岁老人 王德顺
-# if you wano something,go get it,period!
+# if you want something,go get it,period!
 
 
 
