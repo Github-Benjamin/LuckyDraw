@@ -31,11 +31,11 @@ userlist();
 
 function Getid(obj){
     var value=(obj.id);
-    alert(value);
     $('.formdata').fadeIn();
-    $('#user').attr('value',value)
+    $('.user').attr("value",value)
     $(".userdata").fadeOut();
 }
+
 
 $('.formdata  b i').click(function () {
     $(".formdata").fadeOut();
@@ -46,7 +46,7 @@ function GetCheck(obj) {
     $('.username').html(value);
     $('.userdata').fadeIn();
     $(".formdata").fadeOut();
-    $.getJSON("/mylucky",{user:value},function (data,textStatus,jqXHR) {
+    $.getJSON("/checkuserluckylog",{user:value},function (data,textStatus,jqXHR) {
     $("div").remove('.userlog');
     $.each(data, function (n, value) {
                var trs = "";
@@ -62,3 +62,8 @@ $('.userdata  b i').click(function () {
     $(".userdata").fadeOut();
     userlist();
 });
+
+$('.submit').click(function () {
+    // $('#username').fadeOut();
+    $('#vcode').fadeIn();
+})

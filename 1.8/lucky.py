@@ -3,7 +3,7 @@
 #  * Created by Benjamin on 2017/7/17
 #  */
 import web,json
-from luckydata import checkuser,reviseuser,luckrandom,luckylog,checkusername,mylucky
+from luckydata import checkuser,reviseuser,luckrandom,luckylog,checkusername,mylucky,checkuserdata
 from admin import alluserdata,deluser,edituser
 
 urls = (
@@ -16,6 +16,7 @@ urls = (
     '/alluserdata','Alluserdata',
     '/deluser','Deluser',
     '/edituser','Edituser',
+    '/checkuserluckylog','Checkuserluckylog',
     '/logout','Logout',
 )
 
@@ -42,9 +43,12 @@ class Index(object):
         web.header("Content-Type", "text/html; charset=utf-8")
         data = web.input()
         user = data.get('user')
-        session.user = user
-        checkuser(user)
-        raise web.seeother('/')
+        if checkuserdata(user):
+            raise web.seeother('/')
+        else:
+            session.user = user
+            checkuser(user)
+            raise web.seeother('/')
 
 class Lucky(object):
     def GET(self):
@@ -64,7 +68,8 @@ class Lucky(object):
 
 class Logout(object):
     def GET(self):
-        session.kill()
+        # session.kill()
+        session.user = None
         raise web.seeother('/')
 
 class Luckynumber(object):
@@ -84,41 +89,71 @@ class Mylucky(object):
     def GET(self):
         web.header('Content-Type', 'text/json; charset=utf-8', unique=True)
         user = session.user
-        if user == 'admin':
-            data = web.input()
-            user = data.get('user')
-            mylucky(user)
         if str(user) == "None": raise web.seeother('/')
         return mylucky(user)
 
+class Checkuserluckylog(object):
+    def GET(self):
+        web.header('Content-Type', 'text/json; charset=utf-8', unique=True)
+        admin = session.admin
+        if admin == 'Benjamin':
+            data = web.input()
+            user = data.get('user')
+            return mylucky(user)
+        else:
+            raise web.seeother('/admin')
+
 class Admin(object):
     def GET(self):
-        session.user = 'admin'
-        return renter.admin()
+        user = session.admin
+        return renter.admin(user)
+    def POST(self):
+        data = web.input()
+        admin = data.get('admin')
+        pwd = data.get('pwd')
+        if admin != 'Benjamin' and pwd != 'Benjamin':
+            raise web.seeother('/admin')
+        if admin != 'Benjamin' or pwd != 'Benjamin':
+            raise web.seeother('/admin')
+        if admin == 'Benjamin' and pwd == 'Benjamin':
+            session.admin = admin
+            raise web.seeother('/admin')
 
 class Alluserdata(object):
     def GET(self):
-        return alluserdata()
+        user = session.admin
+        if user == 'Benjamin':
+            return alluserdata()
+        else:
+            raise web.seeother('/admin')
 
 class Deluser(object):
     def GET(self):
-        data = web.input()
-        user = data.get('user')
-        user = str(user)
-        deluser(user)
-        raise web.seeother('/admin')
+        user = session.admin
+        if user == 'Benjamin':
+            data = web.input()
+            user = data.get('user')
+            user = str(user)
+            deluser(user)
+            raise web.seeother('/admin')
+        else:
+            raise web.seeother('/admin')
 
 class Edituser(object):
     def GET(self):
         raise web.seeother('/admin')
     def POST(self):
-        data = web.input()
-        user = data.get('user')
-        times = data.get('times')
-        user = str(user)
-        times = str(times)
-        edituser(user,times)
-        raise web.seeother('/admin')
+        user = session.admin
+        if user == 'Benjamin':
+            data = web.input()
+            user = data.get('user')
+            times = data.get('times')
+            user = str(user)
+            times = str(times)
+            edituser(user,times)
+            raise web.seeother('/admin')
+        else:
+            raise web.seeother('/admin')
 
 def notfound():
     return web.notfound("Sorry, the page you were looking for was not found.")
@@ -128,11 +163,11 @@ def internalerror():
 
 if __name__ == "__main__":
     web.config.debug = False
-    web.config.session_parameters['timeout'] = 1*60
+    web.config.session_parameters['timeout'] = 10*60
     app = web.application(urls, globals())
     app.notfound = notfound
     app.internalerror = internalerror
-    session = web.session.Session(app, web.session.DiskStore('sessions'), initializer={'user': None})
+    session = web.session.Session(app, web.session.DiskStore('sessions'), initializer={'user': None,'admin':None})
     app.run()
 
 # app = web.application(urls, globals())

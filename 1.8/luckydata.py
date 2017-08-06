@@ -6,6 +6,7 @@ import json
 import time
 import random
 import sys
+import re
 reload(sys)
 sys.setdefaultencoding('utf8')
 
@@ -137,7 +138,6 @@ def mylucky(user):
 
 def luckrandom(user, playnum):
     idrandom = random.randint(0, 100000000)
-    print idrandom
     if playnum > 0:
         if idrandom <=20000000:
             id = 1
@@ -166,5 +166,12 @@ def luckrandom(user, playnum):
     else:
         return jsondata(user, 'Null', 0, '抽奖次数不足', playnum)
 
-def alluserdata():
-    return json.dumps(load(), indent=2, ensure_ascii=False)
+def vcode(user):
+    vcode = random.randint(1000,9999)
+    return vcode
+
+def checkuserdata(user):
+    zhPattern = re.compile(u'[\u4e00-\u9fa5]+')
+    user = u'%s'%user
+    match = zhPattern.search(user)
+    return match
