@@ -4,7 +4,7 @@
 #  */
 import web,json
 from luckydata import checkuser,reviseuser,luckrandom,luckylog,checkusername,mylucky,checkuserdata
-from admin import alluserdata,deluser,edituser
+from admin import alluserdata,deluser,edituser,saveconf,loadconf
 
 urls = (
     '/','Index',
@@ -17,6 +17,7 @@ urls = (
     '/deluser','Deluser',
     '/edituser','Edituser',
     '/checkuserluckylog','Checkuserluckylog',
+    '/luckyconf', 'Luckyconf',
     '/logout','Logout',
 )
 
@@ -111,12 +112,10 @@ class Admin(object):
         data = web.input()
         admin = data.get('admin')
         pwd = data.get('pwd')
-        if admin != 'Benjamin' and pwd != 'Benjamin':
-            raise web.seeother('/admin')
-        if admin != 'Benjamin' or pwd != 'Benjamin':
-            raise web.seeother('/admin')
         if admin == 'Benjamin' and pwd == 'Benjamin':
             session.admin = admin
+            raise web.seeother('/admin')
+        else:
             raise web.seeother('/admin')
 
 class Alluserdata(object):
@@ -155,6 +154,32 @@ class Edituser(object):
         else:
             raise web.seeother('/admin')
 
+class Luckyconf(object):
+    def GET(self):
+        user = session.admin
+        if user == 'Benjamin':
+            list = loadconf()
+            return renter.luckyconf(list)
+        else:
+            raise web.seeother('/admin')
+    def POST(self):
+        user = session.admin
+        if user == 'Benjamin':
+            data = web.input()
+            one = data.get('one')
+            two = data.get('two')
+            three = data.get('three')
+            four = data.get('four')
+            five = data.get('five')
+            six = data.get('six')
+            sumnum = float(one)+float(two)+float(three)+float(four)+float(five)+float(six)
+            data = '%s,%s,%s,%s,%s,%s' % (one, two, three, four, five, six)
+            if sumnum == 1:
+                saveconf(data)
+                raise web.seeother('/luckyconf')
+            else:
+                return 'Data Error'
+
 def notfound():
     return web.notfound("Sorry, the page you were looking for was not found.")
 
@@ -170,7 +195,10 @@ if __name__ == "__main__":
     session = web.session.Session(app, web.session.DiskStore('sessions'), initializer={'user': None,'admin':None})
     app.run()
 
+# web.config.debug = False
+# web.config.session_parameters['timeout'] = 10*60
 # app = web.application(urls, globals())
 # app.notfound = notfound
 # app.internalerror = internalerror
+# session = web.session.Session(app, web.session.DiskStore('sessions'), initializer={'user': None,'admin':None})
 # app = app.wsgifunc()

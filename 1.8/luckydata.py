@@ -7,6 +7,7 @@ import time
 import random
 import sys
 import re
+from decimal import *
 reload(sys)
 sys.setdefaultencoding('utf8')
 
@@ -136,42 +137,71 @@ def mylucky(user):
     else:
         return json.dumps([{"idname":"暂无中奖记录!",'time':'',}],indent=2, ensure_ascii=False)
 
-def luckrandom(user, playnum):
-    idrandom = random.randint(0, 100000000)
-    if playnum > 0:
-        if idrandom <=20000000:
-            id = 1
-            savelog(user,id,playnum)
-            return jsondata(user, id, 0, str(config[str(id)]), playnum)
-        if idrandom >20000000 and idrandom <= 40000000:
-            id = 2
-            return jsondata(user, id, 60, str(config[str(id)]), playnum)
-        if idrandom > 40000000 and idrandom <= 48000000:
-            id = 3
-            savelog(user, id, playnum)
-            return jsondata(user, id, 120, str(config[str(id)]), playnum)
-        if idrandom > 45000000 and idrandom <= 50000000:
-            id = 4
-            savelog(user, id, playnum)
-            return jsondata(user, id, 180, str(config[str(id)]), playnum)
-        if idrandom > 50000000 and idrandom<=70000000:
-            id = 5
-            return jsondata(user, id, 240, str(config[str(id)]), playnum)
-        if idrandom > 70000000 and idrandom <= 100000000:
-            id = 6
-            savelog(user, id, playnum)
-            return jsondata(user, id, 300, str(config[str(id)]), playnum)
-        else:
-            return jsondata('Null', 0, '数据异常！', playnum)
-    else:
-        return jsondata(user, 'Null', 0, '抽奖次数不足', playnum)
-
+# 预留手机短信验证码
 def vcode(user):
     vcode = random.randint(1000,9999)
     return vcode
 
+# 判断是否为中文字符
 def checkuserdata(user):
     zhPattern = re.compile(u'[\u4e00-\u9fa5]+')
     user = u'%s'%user
     match = zhPattern.search(user)
     return match
+
+# 接入中奖概率配置文件相关信息
+import admin
+list = admin.loadconf()
+
+def luckrandom(user, playnum):
+    num = Decimal(sum(list)).quantize(Decimal('0.00'))
+    if num == 1:
+        for x in range(6):
+            if x == 0:
+                one = list[x]
+            if x == 1:
+                two = one+list[x]
+            if x == 2:
+                three = two+list[x]
+            if x == 3:
+                four = three+list[x]
+            if x == 4:
+                five = four+list[x]
+            if x == 5:
+                six = five+list[x]
+        one = Decimal(one * 100000000).quantize(Decimal('0'))
+        two = Decimal(two * 100000000).quantize(Decimal('0'))
+        three = Decimal(three * 100000000).quantize(Decimal('0'))
+        four = Decimal(four * 100000000).quantize(Decimal('0'))
+        five = Decimal(five * 100000000).quantize(Decimal('0'))
+        six = Decimal(six * 100000000).quantize(Decimal('0'))
+        if playnum > 0:
+            idrandom = random.randint(0, 100000000)
+            if idrandom <= one:
+                id = 1
+                savelog(user, id, playnum)
+                return jsondata(user, id, 0, str(config[str(id)]), playnum)
+            if one < idrandom <= two:
+                id = 2
+                return jsondata(user, id, 60, str(config[str(id)]), playnum)
+            if two < idrandom <= three:
+                id = 3
+                savelog(user, id, playnum)
+                return jsondata(user, id, 120, str(config[str(id)]), playnum)
+            if three < idrandom <= four:
+                id = 4
+                savelog(user, id, playnum)
+                return jsondata(user, id, 180, str(config[str(id)]), playnum)
+            if four < idrandom <= five:
+                id = 5
+                return jsondata(user, id, 240, str(config[str(id)]), playnum)
+            if five < idrandom <= six:
+                id = 6
+                savelog(user, id, playnum)
+                return jsondata(user, id, 300, str(config[str(id)]), playnum)
+            else:
+                return jsondata('Null', 0, '数据异常！', playnum)
+        else:
+            return jsondata(user, 'Null', 0, '抽奖次数不足', playnum)
+    else:
+        return 'Number Error!'

@@ -1,0 +1,80 @@
+$def with(list)
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <style>
+        .title{
+            text-align: center;
+        }
+        .box{
+            height: 240px;
+            width: 320px;
+            text-align: center;
+            margin: auto;
+        }
+    </style>
+    <title>抽奖概率配置</title>
+
+</head>
+<body>
+    <h2 class="title">抽奖概率配置</h2>
+
+    <div class="box">
+        <!--<form action="/luckyconf" method="post" class="inputtxt">-->
+            <a href="/admin" style="text-decoration:none;">用户管理后台</a>
+            <br>
+            <br>
+            <table border=1 class="user_list">
+                    <tr><td>奖品名称</td><td>概率</td>
+                    <tr><td>理财金2000元：</td><td><input type="text" name="one"  id="one" onkeyup="value=value.replace(/[^\w\.\/]/ig,'')" required="required" maxlength="8" placeholder="one：" value="$list[0]"><br>
+                    <tr><td>谢谢参与：</td><td><input type="text" name="two"  id="two" onkeyup="value=value.replace(/[^\w\.\/]/ig,'')" required="required" maxlength="8" placeholder="two："  value="$list[1]"><br>
+                    <tr><td>理财金5200元：</td><td><input type="text" name="three"  id="three" onkeyup="value=value.replace(/[^\w\.\/]/ig,'')" required="required" maxlength="8" placeholder="three："  value="$list[2]"><br>
+                    <tr><td>100元京东卡：</td><td><input type="text" name="four"  id="four" onkeyup="value=value.replace(/[^\w\.\/]/ig,'')" required="required" maxlength="8" placeholder="four："  value="$list[3]"><br>
+                    <tr><td>谢谢参与：</td><td><input type="text" name="five"  id="five" onkeyup="value=value.replace(/[^\w\.\/]/ig,'')" required="required" maxlength="8" placeholder="five："  value="$list[4]"><br>
+                    <tr><td>理财金1000元</td><td><input type="text" name="six"  id="six" onkeyup="value=value.replace(/[^\w\.\/]/ig,'')" required="required" maxlength="8" placeholder="six："  value="$list[5]"><br>
+                    <tr><td colspan="3"><input type="submit" value="提交" class="submit" required="required" onclick="check()"></td>
+            </table>
+        <!--</form>-->
+    </div>
+
+     <script language="javascript">
+          function check(){
+
+              function post(URL, PARAMS) {
+              var temp = document.createElement("form");
+              temp.action = URL;
+              temp.method = "post";
+              temp.style.display = "none";
+              for (var x in PARAMS) {
+                var opt = document.createElement("textarea");
+                opt.name = x;
+                opt.value = PARAMS[x];
+                // alert(opt.name)
+                temp.appendChild(opt);
+              }
+              document.body.appendChild(temp);
+              temp.submit();
+              return temp;
+           }
+
+           var one=document.getElementById("one").value;
+           var two=document.getElementById("two").value;
+           var three=document.getElementById("three").value;
+           var four=document.getElementById("four").value;
+           var five=document.getElementById("five").value;
+           var six=document.getElementById("six").value;
+           var sumum = parseFloat(one)+parseFloat(two)+parseFloat(three)+parseFloat(four)+parseFloat(five)+parseFloat(six);
+           if (sumum==1){
+                post('/luckyconf', {one:one,two:two,three:three,four:four,five:five,six:six});
+           }
+           else {
+               alert('概率和必须等于1!');
+
+           }
+          }
+     </script>
+
+</body>
+</html>

@@ -13,6 +13,9 @@ $def with(user)
             margin: auto;
             text-align: center;
         }
+        .userlist{
+            text-align: center;
+        }
         .formdata{
             position:absolute;
             background: #aeb1ff;
@@ -65,6 +68,9 @@ $def with(user)
 
     $if user:
         <div class="userlist">
+            <a href="/luckyconf" style="text-decoration:none;">抽奖概率配置</a>
+            <br>
+            <br>
             <table border=1 class="user_list">
                 <tr><td>序号</td><td>最后更新时间</td><td>用户名</td><td>剩余抽奖次数</td><td colspan="3">操作</td>
             </table>

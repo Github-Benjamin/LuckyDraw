@@ -15,7 +15,7 @@ var userlist = function () {
                 {
                     if (istrue){
                         var num = n+1
-                        trs += "<tr class='log'><td>"+ num +'</td><td>'+value.time+'</td><td>'+key+'</td><td>'+value[key]+'</td><td>'+"<a style='color:#2b542c;text-decoration:none;' href='javascript:;' onclick='GetCheck(this);' id='"+key+"'>查看</a></td><td><a style='color:green;text-decoration:none;' href='javascript:;' class='edit' onclick='Getid(this);' id='"+key+"'>编辑</a></td><td><a style='color: #ff0000;text-decoration:none;' href="+"'/deluser?user="+key+"'>删除</a></td>"
+                        trs += "<tr class='log'><td>"+ num +'</td><td>'+value.time+'</td><td>'+key+'</td><td>'+value[key]+'</td><td>'+"<a style='color:#2b542c;text-decoration:none;' href='javascript:;' onclick='GetCheck(this);' id='"+key+"'>查看</a></td><td><a style='color:green;text-decoration:none;' href='javascript:;' class='edit' onclick='Getid(this);' id='"+key+"'>编辑</a></td><td><a style='color: #ff0000;text-decoration:none;' href="+"javascript:if(confirm('确实要删除该内容吗?'))location='/deluser?user="+key+"'>删除</a></td>"
                         istrue = false;
                     }
                 }
