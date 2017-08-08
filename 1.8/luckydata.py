@@ -151,9 +151,8 @@ def checkuserdata(user):
 
 # 接入中奖概率配置文件相关信息
 import admin
-list = admin.loadconf()
-
 def luckrandom(user, playnum):
+    list = admin.loadconf()
     num = Decimal(sum(list)).quantize(Decimal('0.00'))
     if num == 1:
         for x in range(6):
